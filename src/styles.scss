@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*IMPORTO LOS ESTILOS DE LOS ICONOS DEL FONTAWESOME*/
+@import "assets/icons/fontawesome/css/all.min.css";
+/*IMPORTO LOS ESTILOS DE BOOSTRAP EL SIMBOLO ~ NOS QUIERE DECIR QUE TODOS LOS QUE ESTÉN ANTES DE ESTO QUEDAN IMPLICITOS*/
+@import "~bootstrap/scss/bootstrap";

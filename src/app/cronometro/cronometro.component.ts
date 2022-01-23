@@ -6,43 +6,53 @@ import {Subscription, timer} from 'rxjs';
   templateUrl: './cronometro.component.html',
   styleUrls: ['./cronometro.component.scss']
 })
+
 export class CronometroComponent implements OnInit {
 
-  @Input() minutes: number = 0;
-  @Input() segundo: number = 0;
-  @Output() markTime: EventEmitter<number> = new EventEmitter<number>();
-  @Output() clearTimeLogs: EventEmitter<void> = new EventEmitter<void>();
-  subscription: Subscription = new Subscription();
-  timeInSeconds: number = 0;
-  isPlaying: boolean = false;
+  //cuando hago uso del decorador Input me sirva para poder exponer la variable minutos
+  @Input() minutos: number = 0;
+  //cuando hago uso del decorador Input me sirva para poder exponer la variable minutos
+  @Input() segundos: number = 0;
+  //cuand hago uso del decorador output es para poder devolver valores
+  //para esto le pongo cualquier nombre de variable, el evento markTime sirve para
+  //emitir eventos personalizados de forma síncrona o asíncrona
+  //y luego inicializo este evento y le doy un subtipo string
+  @Output() marcarVuelta: EventEmitter<number> = new EventEmitter<number>();
+  @Output() detener: EventEmitter<void> = new EventEmitter<void>();
+
+  //Una Suscripción es un objeto que representa un recurso desechable, normalmente la ejecución de un Observable
+  limpiador: Subscription = new Subscription();
+
+  segundosAcumulador: number = 0;
+  ctrlEjecuta: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.timeInSeconds = this.minutes * 60 + this.segundo;
+    this.segundosAcumulador = this.minutos * 60 + this.segundos;
   }
 
   play():void {
-    this.isPlaying = true;
-    this.subscription = timer(this.timeInSeconds, 1000)
+    this.ctrlEjecuta = true;
+    this.limpiador = timer(this.segundosAcumulador, 1000)
       .subscribe(() => {
-        this.timeInSeconds++;
+        this.segundosAcumulador++;
       });
   }
 
   pause():void {
-    this.isPlaying = false;
-    this.subscription.unsubscribe();
+    this.ctrlEjecuta = false;
+    this.limpiador.unsubscribe();
   }
 
   stop():void {
-    this.isPlaying = false;
-    this.subscription.unsubscribe();
-    this.timeInSeconds = 0;
-    this.clearTimeLogs.emit();
+    this.ctrlEjecuta = false;
+    this.limpiador.unsubscribe();
+    this.segundosAcumulador = 0;
+    this.detener.emit();
   }
 
   registerTime():void {
-    this.markTime.emit(this.timeInSeconds);
+    this.marcarVuelta.emit(this.segundosAcumulador);
   }
 }

@@ -1,0 +1,17 @@
+* {
+  margin: 10px;
+}
+
+.body-contador {
+  width: 250px;
+  height: 80px;
+
+  span {
+    font-size: 50px;
+  }
+
+  button {
+    width: 40px;
+    cursor: pointer;
+  }
+}

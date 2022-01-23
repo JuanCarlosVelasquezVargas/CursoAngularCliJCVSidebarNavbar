@@ -1,23 +1,22 @@
-<div class="container">
-  <div class="display-6 col-12 col-md-12 col-sm-12 col-lg-12 text-center">
-    <span>{{timeInSeconds * 1000 | date:'mm:ss'}}</span>
+<p>Hola este es mi componente codigo html cronómetro!</p>
+
+<div class="row">
+  <div class="col-md-4">
+    <span>{{segundosAcumulador * 1000 | date:'mm:ss'}}</span>
   </div>
-  <div class="col-12 col-md-12 col-sm-12 col-lg-12 text-center pt-2">
-    <button class="btn btn-outline-primary text-success bg-white"
-            (click)="play()" [disabled]="isPlaying">
-      <i class="fa fa-play"></i>
+  <p></p>
+  <div class="col-md-4">
+    <button class="fa fa-play"
+            (click)="play()" [disabled]="ctrlEjecuta">
     </button>
-    <button class="btn btn-outline-primary ms-2"
+    <button class="fa fa-pause"
             (click)="pause()">
-      <i class="fa fa-pause"></i>
     </button>
-    <button class="btn btn-outline-primary ms-2 text-danger  bg-white"
+    <button class="fa fa-stop"
             (click)="stop()">
-      <i class="fa fa-stop"></i>
     </button>
-    <button class="btn btn-outline-primary ms-2 text-warning bg-white"
+    <button class="fa fa-stopwatch"
             (click)="registerTime()">
-      <i class="fa fa-stopwatch"></i>
     </button>
   </div>
 </div>

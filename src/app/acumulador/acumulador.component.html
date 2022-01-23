@@ -1,1 +1,38 @@
-<p>Hola este es mi componente codigo html!</p>
+<p>Hola este es mi componente codigo html! acumulador!</p>
+
+<!--aqui voy a hacer la denominación al ícono que quiero que me salga por ejemplo el libro-->
+<i class="fa fa-address-book"></i>
+<!--por ejemplo el ícono de la cara enojada-->
+<i class="fa fa-angry"></i>
+
+<div class="container">
+  <p class="lead">
+    Este es un texto de prueba para ver como se aplican los estilos css de boostrap
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <!--SPAN Es un contenedor en línea. Sirve para aplicar estilo al texto o agrupar elementos en línea.-->
+    <span>
+      {{contador}}
+    </span>
+    <span>
+      {{acumulador}}
+    </span>
+  </div>
+</div>
+
+<div class="body-contador d-flex flex-row flex-nowrap align-items-center justify-content-around">
+  <button class="btn btn-outline-primary"
+          (click)=cambiarValor(-acumulador)>
+    -{{acumulador}}
+  </button>
+  <span>
+  {{ contador}}
+  </span>
+  <button class="btn btn-outline-primary"
+          (click)=cambiarValor(acumulador)>
+    +{{acumulador}}
+  </button>
+</div>

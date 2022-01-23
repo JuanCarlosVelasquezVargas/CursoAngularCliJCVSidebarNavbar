@@ -1,0 +1,45 @@
+* {
+  font-size: 20px;
+}
+
+.title {
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  background-color: darkblue;
+}
+
+.sub-title {
+  padding: 3px;
+  color: darkblue;
+  font-weight: bold;
+  background-color: darkgrey;
+}
+
+.content-social{
+  width: 250px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.text-social{
+  font-style: italic;
+  background-color: darkviolet;
+  color: #ffffff;
+}
+
+.form-basic {
+  display: flex;
+  flex-flow: column nowrap;
+  .input-form {
+    margin-top: 15px;
+    width: 250px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .label {
+      font-weight: bold;
+    }
+  }
+}
