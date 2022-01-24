@@ -1,11 +1,58 @@
 <!--#region-->
 
 <p class="title">
+  Variables en el Template
+</p>
+<!--son referencias en el html, es tratar de darle uso a etiquetas dentro del html
+sin necesidad de pasar variables por eventos para esto les nombro a los objetos con #
+y dependiendo de cual sea su tipo voy a poder usar sus propiedades y eventos-->
+<input #inputPhone
+       type="text"
+       class="form-control mb-2"
+       placeholder="phone"/>
+<button #botonLlamar
+        class="btn btn-primary me-2"
+        (click)="callPhone(inputPhone.value)">
+  Llamar
+</button>
+<button class="btn btn-danger me-2"
+        (click)="botonLlamar.click()">
+  Click Botón
+</button>
+
+<!--#endregion-->
+
+<!--#region-->
+
+<p class="title">
   Componente Cronometro
 </p>
 
-<app-cronometro [minutos]="0"
+<button class="btn btn-primary me-2"
+        (click)="cronometroPrimero.play()">
+  Iniciar Primer Cronómetro Padre desde html
+</button>
+
+<button class="btn btn-danger me-2"
+        (click)="iniciarCronometro()">
+  Iniciar Segundo Cronómetro Padre desde ts
+</button>
+
+<button class="btn btn-primary me-2"
+        (click)="iniciarTodosCronometro()">
+  Iniciar todos los Cronómetros desde Padre
+</button>
+
+<app-cronometro #cronometroPrimero
+                [minutos]="0"
                 [segundos]="0"
+                (marcarVuelta)="aniadirVuelta($event)"
+                (detener)="limpiarVueltas()">
+</app-cronometro>
+
+<app-cronometro #cronometroSegundo
+                [minutos]="5"
+                [segundos]="10"
                 (marcarVuelta)="aniadirVuelta($event)"
                 (detener)="limpiarVueltas()">
 </app-cronometro>

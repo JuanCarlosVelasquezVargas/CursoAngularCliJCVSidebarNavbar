@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {CronometroComponent} from "./cronometro/cronometro.component";
 
 @Component({
   selector: 'app-root',
@@ -31,17 +32,34 @@ export class AppComponent {
 
   insertLogAcumulador(log: string){
     console.log(log);
-    this.logAcumulador.push(log)
+    this.logAcumulador.unshift(log)
   }
 
   timeStamps: number[] = [];
 
   aniadirVuelta($event: number) {
-    this.timeStamps.push($event);
+    this.timeStamps.unshift($event);
   }
 
   limpiarVueltas() {
     this.timeStamps = [];
+  }
+
+  callPhone(phone: string) {
+    console.log(phone)
+  }
+
+  //@ViewChild(CronometroComponent) primerCrono: CronometroComponent
+  @ViewChild('cronometroPrimero') primerCrono: CronometroComponent
+  @ViewChild('cronometroSegundo') segundoCrono: CronometroComponent
+
+  iniciarCronometro(){
+    this.segundoCrono.play()
+  }
+
+  iniciarTodosCronometro(){
+    this.primerCrono.play()
+    this.segundoCrono.play()
   }
 
 }
